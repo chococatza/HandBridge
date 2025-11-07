@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Mode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-game">
+
+    <header class="container">
+        <div class="logo">
+            <span>SignLearn AI</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">&larr; Back to Home</a></li>
+            </ul>
+        </nav>
+        <div class="game-timer" id="game-timer">
+            Time: <span>10</span>s
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="game-challenge-area">
+            
+            <div class="game-challenge">
+                <h3>Make the sign for:</h3>
+                <div class="game-letter" id="game-letter">
+                    A
+                </div>
+            </div>
+
+            <div class="video-column">
+                <h3>Your Webcam</h3>
+                <div class="video-box" id="webcam-container">
+                    <video id="webcam-feed" autoplay playsinline></video>
+                    <div class="loading-shimmer" id="webcam-loading">
+                        Starting camera...
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="feedback-area" id="feedback-box">
+            <p>Get ready...</p>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

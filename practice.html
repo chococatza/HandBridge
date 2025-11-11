@@ -1,59 +1,51 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice Lesson</title> <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Lesson</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body id="page-practice"> 
+<body id="page-practice">
+  <header class="container">
+    <div class="logo"><span>HandBridge</span></div>
+    <nav><ul><li><a href="lessons.html">&larr; Back to Lessons</a></li></ul></nav>
+    <div class="lesson-title">Practicing: <span id="current-letter">...</span></div>
+  </header>
 
-    <header class="container">
-        <div class="logo">
-            <span>HandBridge</span>
+  <main class="container">
+    <div class="practice-area">
+      <div class="video-column">
+        <h3>Example Pose</h3>
+        <div class="video-box">
+          <img id="example-image" src="" alt="Example Pose">
         </div>
-        <nav>
-            <ul>
-                <li><a href="lessons.html">&larr; Back to Lessons</a></li> 
-            </ul>
-        </nav>
-        <div class="lesson-title">
-            Practicing: <span id="current-letter">...</span>
+      </div>
+
+      <div class="video-column">
+        <h3>Your Webcam</h3>
+        <div class="video-box" id="webcam-container">
+          <video id="webcam-feed" autoplay playsinline></video>
+          <canvas id="overlay" width="640" height="480"></canvas>
+          <div class="loading-shimmer" id="webcam-loading">Starting camera...</div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <main class="container">
-        <div class="practice-area">
-            
-            <div class="video-column">
-                <h3>Example Pose</h3>
-                <div class="video-box" id="example-video">
-                    <img id="example-image" src="" alt="Example Pose">
-                </div>
-            </div>
+    <div class="feedback-area" id="feedback-box">
+      <p>Waiting for you to start...</p>
+    </div>
+  </main>
 
-            <div class="video-column">
-                <h3>Your Webcam</h3>
-                <div class="video-box" id="webcam-container">
-                    <video id="webcam-feed" autoplay playsinline></video>
-                    <div class="loading-shimmer" id="webcam-loading">
-                        Starting camera...
-                    </div>
-                </div>
-            </div>
+  <footer class="action-bar practice-nav">
+    <button class="btn btn-create" id="prev-btn">&larr; Previous</button>
+    <button class="btn btn-submit" id="next-btn">Next &rarr;</button>
+  </footer>
 
-        </div>
-
-        <div class="feedback-area" id="feedback-box">
-            <p>Waiting for you to start...</p>
-        </div>
-    </main>
-
-    <footer class="action-bar practice-nav">
-        <button class="btn btn-create" id="prev-btn">&larr; Previous</button>
-        <button class="btn btn-submit" id="next-btn">Next &rarr;</button>
-    </footer>
-
-    <script src="script.js"></script>
+  <!-- โหลด Mediapipe ชุดเดียว และก่อน script.js เสมอ -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

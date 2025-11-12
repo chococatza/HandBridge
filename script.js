@@ -22,7 +22,7 @@ if (window.__HB_SCRIPT_LOADED__) {
 
   // Game tuning
   const GAME_TOTAL_ROUNDS = 10;
-  let ROUND_TIME = 5.0;           // time per round (ปรับได้ด้วย ?time=)
+  let ROUND_TIME = 3.0;           // time per round (ปรับได้ด้วย ?time=)
   const GAME_CONF_TH = 0.60;
   const EXCLUDE_SIGNS = new Set(["J", "Z"]); // ข้าม motion ในเกม
 

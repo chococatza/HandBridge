@@ -1,0 +1,318 @@
+/* ======== 1. Basic Setup & Re-used Styles (จากดีไซน์เดิม) ======== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    /* พื้นหลังโค้งสีเหลืองอ่อนๆ (จากดีไซน์เดิม) */
+    background-image: radial-gradient(circle at 20% 30%, #fffbeE 30%, transparent 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+.btn:hover { transform: scale(1.03); }
+
+/* ปุ่มสีชมพู/ส้ม */
+.btn-order, .btn-create { 
+    background-color: #feece9;
+    color: #f26b5e;
+}
+
+/* ปุ่มสีเขียว */
+.btn-submit {
+    background-color: #82c99f;
+    color: white;
+}
+
+/* ======== 2. Header (จากดีไซน์เดิม) ======== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.logo { font-weight: bold; font-size: 18px; }
+nav ul { list-style: none; display: flex; gap: 30px; margin: 0; }
+nav a { text-decoration: none; color: #555; }
+.lesson-title { font-size: 18px; font-weight: bold; }
+
+/* ======== 3. [NEW] Lesson Dashboard (index.html) ======== */
+.dashboard-header {
+    text-align: center;
+    margin: 40px 0;
+}
+.dashboard-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+.dashboard-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+.lesson-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+}
+.lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+.lesson-card h2 {
+    font-size: 48px;
+    margin: 0 0 10px 0;
+    color: #f26b5e; /* สีส้ม/ชมพู */
+}
+.lesson-card .status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #82c99f; /* สีเขียว */
+}
+
+/* การ์ดที่เรียนผ่านแล้ว */
+.lesson-card.completed {
+    background-color: #f0fff6;
+    border: 2px solid #82c99f;
+}
+.lesson-card.completed h2 {
+    color: #82c99f;
+}
+
+/* การ์ดที่ยังไม่ปลดล็อก */
+.lesson-card.locked {
+    background-color: #f4f4f4;
+    color: #aaa;
+    cursor: not-allowed;
+}
+.lesson-card.locked h2 { color: #aaa; }
+.lesson-card.locked .status { color: #aaa; }
+
+/* ======== 4. [NEW] Practice Interface (practice.html) ======== */
+.practice-area {
+    display: flex;
+    flex-wrap: wrap; /* เผื่อหน้าจอเล็ก */
+    gap: 30px;
+    margin-top: 30px;
+}
+.video-column {
+    flex: 1; /* แบ่งครึ่งจอ */
+    min-width: 300px; /* ความกว้างขั้นต่ำ */
+}
+.video-column h3 {
+    font-size: 20px;
+    color: #555;
+}
+.video-box {
+    width: 100%;
+    aspect-ratio: 16 / 12; /* อัตราส่วนวิดีโอ */
+    background-color: #eee;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* ซ่อนขอบวิดีโอที่ล้น */
+    position: relative;
+}
+.video-box img,
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* พลิกกล้องผู้ใช้ (เหมือนกระจก) */
+#webcam-feed {
+    transform: scaleX(-1);
+}
+.loading-shimmer {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+
+/* ======== 5. [NEW] Feedback & Practice Nav ======== */
+.feedback-area {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    padding: 20px 30px;
+    text-align: center;
+    margin-top: 30px;
+    min-height: 50px;
+    transition: background-color 0.3s ease;
+}
+.feedback-area p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #555;
+}
+/* สไตล์สำหรับ Feedback ต่างๆ */
+.feedback-area.correct {
+    background-color: #e6ffed; /* เขียวอ่อน */
+    color: #22a04d;
+}
+.feedback-area.hint {
+    background-color: #fff4e6; /* ส้มอ่อน */
+    color: #d95a00;
+}
+
+/* แถบ Action Bar ด้านล่างสำหรับหน้าฝึก */
+.action-bar.practice-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 30px auto 50px auto;
+    background-color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+}
+
+/* ======== [เพิ่ม] 6. Home Page Styles (index.html) ======== */
+.home-hero {
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+    min-height: 40vh;
+}
+.home-hero .hero-text {
+    flex: 1;
+}
+.home-hero .hero-text h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.home-hero .hero-text p {
+    font-size: 18px;
+    color: #666;
+    max-width: 450px;
+}
+.hero-image-placeholder {
+    flex: 1;
+    text-align: center;
+    /* คุณต้องใส่รูปของคุณที่นี่ */
+}
+.hero-image-placeholder img {
+    max-width: 100%;
+    max-height: 300px;
+}
+
+/* สไตล์ปุ่มเลือกในหน้า Home */
+.action-bar.home-actions {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: transparent; /* ไม่เอาพื้นหลังขาว */
+    box-shadow: none; /* ไม่เอาเงา */
+    padding: 20px;
+    margin-top: 20px;
+}
+.home-choice-btn {
+    flex: 1;
+    max-width: 350px;
+    padding: 25px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.home-choice-btn .choice-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.home-choice-btn .choice-desc {
+    display: block;
+    font-size: 16px;
+    opacity: 0.8;
+}
+/* ทำให้สีปุ่มตรงกับที่ผู้ใช้คุ้นเคย */
+.home-choice-btn.btn-create { /* ปุ่ม Lessons */
+    background-color: #f26b5e;
+    color: white;
+}
+.home-choice-btn.btn-submit { /* ปุ่ม Game */
+    background-color: #82c99f;
+    color: white;
+}
+
+
+/* ======== [เพิ่ม] 7. Game Page Styles (game.html) ======== */
+.game-timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f26b5e; /* สีส้ม/แดง */
+}
+.game-timer span {
+    font-size: 24px;
+}
+
+.game-challenge-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* คอลัมน์สำหรับโจทย์ (ตัวอักษร) */
+.game-challenge {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.game-challenge h3 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+}
+.game-letter {
+    font-size: 180px; /* ตัวอักษรใหญ่ๆ */
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+    padding: 20px;
+    background-color: #fffbeE; /* สีเหลืองนวลจากดีไซน์เดิม */
+    border-radius: 40px;
+    min-width: 200px;
+}
+
+/* ทำให้คอลัมน์กล้องในหน้าเกมมีขนาดเท่ากัน */
+#page-game .video-column {
+    flex: 1;
+    min-width: 300px;
+}

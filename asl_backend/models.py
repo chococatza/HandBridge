@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean
-from database import Base
+from .database import Base
 
 class Attempt(Base):
     __tablename__ = "attempts"
@@ -9,3 +9,4 @@ class Attempt(Base):
     predicted_symbol = Column(String)             # ตัวที่โมเดลทำนายได้
     confidence = Column(Float)                    # ค่าความมั่นใจ
     accepted = Column(Boolean)                    # ถูกหรือไม่ (True/False)
+

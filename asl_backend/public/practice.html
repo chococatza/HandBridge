@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Lesson</title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body id="page-practice"> 
+
+    <header class="container">
+        <div class="logo">
+            <span>HandBridge</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="lessons.html">&larr; Back to Lessons</a></li> 
+            </ul>
+        </nav>
+        <div class="lesson-title">
+            Practicing: <span id="current-letter">...</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="practice-area">
+            
+            <div class="video-column">
+                <h3>Example Pose</h3>
+                <div class="video-box" id="example-video">
+                    <img id="example-image" src="" alt="Example Pose">
+                </div>
+            </div>
+
+            <div class="video-column">
+                <h3>Your Webcam</h3>
+                <div class="video-box" id="webcam-container">
+                    <video id="webcam-feed" autoplay playsinline></video>
+                    <div class="loading-shimmer" id="webcam-loading">
+                        Starting camera...
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="feedback-area" id="feedback-box">
+            <p>Waiting for you to start...</p>
+        </div>
+    </main>
+
+    <footer class="action-bar practice-nav">
+        <a href="#" class="btn btn-create" id="prev-btn">&larr; Previous</a>
+        <a href="#" class="btn btn-submit" id="next-btn">Next &rarr;</a>
+    </footer>
+    
+    <script type="module" src="script.js?v=2"></script>
+</body>
+</html>

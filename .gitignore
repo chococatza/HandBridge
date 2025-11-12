@@ -1,0 +1,9 @@
+# โฟลเดอร์ Library (ห้าม Push!)
+venv/
+.venv/
+
+# ไฟล์ Cache ของ Python
+__pycache__/
+
+# ฐานข้อมูล
+asl.db

@@ -1,41 +1,101 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Mode</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HandBridge — Speed Challenge</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body id="page-game">
-  <header class="container">
-    <div class="logo"><span>HandBridge</span></div>
-    <nav><ul><li><a href="index.html">&larr; Back to Home</a></li></ul></nav>
-    <div class="game-timer" id="game-timer">Time: <span>10</span>s</div>
+  <header class="hb-topbar">
+    <div class="hb-brand">HandBridge — <b>Speed Challenge</b></div>
   </header>
 
-  <main class="container">
-    <div class="game-challenge-area">
-      <div class="game-challenge">
-        <h3>Make the sign for:</h3>
-        <div class="game-letter" id="game-letter">A</div>
+  <main class="hb-grid">
+    <!-- กล้อง + Canvas overlay -->
+    <section id="cam-box" class="hb-cam-box">
+      <!-- วิดีโอ: ซ่อนด้วย CSS เฉพาะหน้าเกม (เหลือจอเดียว) -->
+      <video id="webcam-feed" playsinline muted autoplay></video>
+
+      <!-- กล่องล็อกอัตราส่วน + แคนวาส -->
+      <div id="cam-wrap">
+        <canvas id="overlay"></canvas>
       </div>
 
-      <div class="video-column">
-        <h3>Your Webcam</h3>
-        <div class="video-box" id="webcam-container">
-          <video id="webcam-feed" autoplay playsinline></video>
-          <canvas id="overlay" width="640" height="480"></canvas>
-          <div class="loading-shimmer" id="webcam-loading">Starting camera...</div>
+      <!-- HUD ลอยบนภาพ -->
+      <div id="hud" class="hb-hud">
+        <div id="hud-line-a" class="hb-hud-a">Ready</div>
+        <div id="hud-line-b" class="hb-hud-b">Press Start to begin</div>
+      </div>
+
+      <!-- ⏱ Timer มุมขวาล่าง -->
+      <div id="hb-timer" aria-hidden="true">
+        <div class="bar"></div>
+        <span class="label" id="hb-timer-label">0.0s</span>
+      </div>
+
+      <!-- 🏁 Finish Overlay -->
+      <div id="hb-finish" class="hidden" role="dialog" aria-modal="true">
+        <div class="card">
+          <div class="title">Challenge Finished</div>
+          <div class="score">
+            <span id="hb-final-score">0</span>
+            <small>/ <span id="hb-final-total">10</span></small>
+          </div>
+          <div class="actions">
+            <button id="hb-restart" class="hb-btn hb-green">Restart</button>
+            <a href="index.html" class="hb-btn hb-amber" style="text-decoration:none">Home</a>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="feedback-area" id="feedback-box"><p>Get ready...</p></div>
+
+    <!-- แผงควบคุม -->
+    <aside class="hb-side">
+      <div class="hb-card">
+        <div class="hb-card-title">Controls</div>
+        <div class="hb-controls">
+          <button id="btn-start" class="hb-btn hb-green">Start</button>
+          <button id="btn-skip" class="hb-btn hb-amber">Skip</button>
+          <button id="btn-stop" class="hb-btn hb-red">Stop</button>
+        </div>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-title">Current Target</div>
+        <div id="game-letter" class="hb-letter">—</div>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-title">Status</div>
+        <div class="hb-status-grid">
+          <div>
+            <div class="hb-status-label">Round</div>
+            <div id="stat-round" class="hb-status-val">0/10</div>
+          </div>
+          <div>
+            <div class="hb-status-label">Score</div>
+            <div id="stat-score" class="hb-status-val">0</div>
+          </div>
+        </div>
+        <div class="hb-time">
+          <div class="hb-status-label">Time left</div>
+          <div id="stat-time" class="hb-status-val">0.0s</div>
+        </div>
+      </div>
+    </aside>
   </main>
 
+  <!-- Mediapipe -->
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
   <script src="script.js"></script>
+  <script> window.HB_MODE = "game"; </script>
 </body>
+
 </html>

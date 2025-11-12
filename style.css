@@ -300,16 +300,15 @@ nav a { text-decoration: none; color: #555; }
     color: #555;
     margin-bottom: 20px;
 }
-.game-letter {
-    font-size: 180px; /* ตัวอักษรใหญ่ๆ */
-    font-weight: bold;
-    color: #333;
-    line-height: 1;
-    padding: 20px;
-    background-color: #fffbeE; /* สีเหลืองนวลจากดีไซน์เดิม */
-    border-radius: 40px;
-    min-width: 200px;
+#game-letter {
+  font-size: min(20vw, 200px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-shadow: 0 4px 18px rgba(0,0,0,.25);
+  line-height: 1;
+  user-select: none;
 }
+
 
 /* ทำให้คอลัมน์กล้องในหน้าเกมมีขนาดเท่ากัน */
 #page-game .video-column {
@@ -325,3 +324,197 @@ nav a { text-decoration: none; color: #555; }
   object-fit: contain;
   box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
+
+/* =========================================
+   HandBridge — Camera + Game (Clean/Modern)
+   ========================================= */
+
+/* ---- Canvas wrapper: lock aspect ratio / no squish ---- */
+#cam-wrap{
+  --ar-w:4; --ar-h:3;
+  aspect-ratio:calc(var(--ar-w)/var(--ar-h));
+  width:100%;
+  max-height:70vh;
+  background:#000;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.12);
+}
+#cam-wrap > #overlay{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+/* ---- Game: single screen (hide video only on game page) ---- */
+#page-game #webcam-feed{ display:none !important; }
+
+/* ---- Big target letter (responsive & crisp) ---- */
+#game-letter{
+  font-size:min(20vw,210px);
+  font-weight:900;
+  letter-spacing:.06em;
+  line-height:1;
+  user-select:none;
+  text-align:center;
+  color:#101828;
+  text-shadow:0 6px 22px rgba(16,24,40,.12);
+}
+
+/* ---- Game layout: light cards, soft shadows (modern) ---- */
+.hb-grid{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:20px;
+  padding:16px;
+}
+.hb-cam-box{
+  position:relative;
+  background:linear-gradient(180deg,#fefcf5 0%, #fff8e8 100%);
+  border-radius:20px;
+  padding:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+.hb-side{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.hb-card{
+  background:#ffffff;
+  border:1px solid #eef2f7;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 8px 22px rgba(15,23,42,.06);
+  color:#1f2937;
+}
+.hb-card-title{
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:10px;
+  letter-spacing:.02em;
+}
+
+/* buttons */
+.hb-controls{ display:flex; gap:10px; flex-wrap:wrap; }
+.hb-btn{
+  border:0; border-radius:10px; padding:10px 14px;
+  font-weight:800; letter-spacing:.02em; cursor:pointer;
+  box-shadow:0 6px 14px rgba(2,6,23,.08);
+  transition:transform .12s ease, filter .12s ease;
+}
+.hb-btn:hover{ transform:translateY(-1px); filter:brightness(1.03); }
+.hb-green{ background:#22c55e; color:#052e16; }
+.hb-amber{ background:#f59e0b; color:#3a1d06; }
+.hb-red{ background:#ef4444; color:#fff; }
+
+/* status */
+.hb-status-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; text-align:center;
+}
+.hb-status-label{ font-size:12px; color:#6b7280; }
+.hb-status-val{ font-size:24px; font-weight:900; color:#0f172a; }
+.hb-time{ margin-top:8px; }
+
+/* HUD chip on camera */
+.hb-hud{
+  position:absolute; left:18px; bottom:18px;
+  display:flex; flex-direction:column; gap:6px;
+  background:rgba(17,24,39,.55); color:#f8fafc;
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(6px);
+  padding:10px 12px; border-radius:12px;
+  box-shadow:0 10px 24px rgba(2,6,23,.25);
+}
+.hb-hud-a{ font-size:18px; font-weight:800; letter-spacing:.01em; }
+.hb-hud-b{ font-size:13px; opacity:.95; }
+
+/* ---- Effects: success/alert/shake ---- */
+@keyframes hb-flash-green{
+  0%{background:rgba(34,197,94,0)}
+  28%{background:rgba(34,197,94,.22)}
+  100%{background:rgba(34,197,94,0)}
+}
+@keyframes hb-flash-red{
+  0%{background:rgba(239,68,68,0)}
+  28%{background:rgba(239,68,68,.22)}
+  100%{background:rgba(239,68,68,0)}
+}
+@keyframes hb-shake{
+  12%{transform:translateX(-6px)} 24%{transform:translateX(6px)}
+  36%{transform:translateX(-5px)} 48%{transform:translateX(5px)}
+  60%{transform:translateX(-3px)} 72%{transform:translateX(3px)}
+  84%{transform:translateX(-2px)} 100%{transform:translateX(0)}
+}
+.hb-flash-green{ animation:hb-flash-green .45s ease-out; }
+.hb-flash-red{   animation:hb-flash-red   .45s ease-out; }
+.hb-shake{       animation:hb-shake       .5s ease-in-out; }
+
+/* ---- Practice page bits (light, consistent with cards) ---- */
+.video-box{
+  width:100%; aspect-ratio:16/12; background:#fff;
+  border-radius:16px; overflow:hidden; position:relative;
+  box-shadow:0 10px 26px rgba(2,6,23,.07);
+  border:1px solid #eef2f7;
+}
+.video-box img, .video-box video{ width:100%; height:100%; object-fit:contain; }
+#webcam-feed{ transform:scaleX(-1); }
+
+.feedback-area{
+  margin-top:18px; text-align:center; padding:16px 18px;
+  border-radius:14px; background:#fff;
+  border:1px solid #eef2f7; box-shadow:0 8px 20px rgba(2,6,23,.06);
+  transition:background .2s ease, color .2s ease;
+}
+.feedback-area.correct{ background:#f0fdf4; color:#166534; }
+.feedback-area.hint{ background:#fef9c3; color:#854d0e; }
+
+/* ===== Timer (bottom-right) ===== */
+#hb-timer{
+  position:absolute; right:18px; bottom:18px;
+  width:220px; height:14px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;
+  backdrop-filter: blur(6px);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  overflow:hidden;
+}
+#hb-timer .bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  transition: width .09s linear;
+}
+#hb-timer .label{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  font-size:12px; font-weight:800; color:#f8fafc; text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+/* ===== Finish Overlay ===== */
+#hb-finish{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(2,6,23,.45);
+  backdrop-filter: blur(6px);
+}
+#hb-finish.hidden{ display:none; }
+#hb-finish .card{
+  width:min(92vw,520px);
+  background:#ffffff;
+  border:1px solid #eef2f7;
+  border-radius:18px;
+  padding:24px 22px 26px;
+  box-shadow:0 18px 48px rgba(2,6,23,.22);
+  text-align:center;
+}
+#hb-finish .title{
+  font-size:22px; font-weight:900; color:#0f172a; letter-spacing:.01em;
+  margin-bottom:12px;
+}
+#hb-finish .score{
+  font-size:72px; font-weight:900; color:#16a34a; line-height:1; margin:4px 0 18px;
+  text-shadow:0 6px 18px rgba(22,163,74,.18);
+}
+#hb-finish .score small{ font-size:28px; color:#334155; font-weight:800; }
+#hb-finish .actions{ display:flex; gap:10px; justify-content:center; }

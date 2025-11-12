@@ -1,0 +1,10 @@
+# 1. สร้างโฟลเดอร์ venv
+python -m venv venv
+
+# 2. Activate มัน 
+source venv/bin/activate
+
+3. รัน pip install -r requirements.txt
+4. รัน uvicorn asl_backend.main:app --reload
+6. เปิดเบราว์เซอร์ (Chrome/Safari)
+7. ไปที่: http://127.0.0.1:8000

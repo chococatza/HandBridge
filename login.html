@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | HandBridge</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        .auth-page {
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; background-color: #f7f7f7;
+        }
+        .auth-card {
+            background: white; padding: 40px; border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 350px; max-width: 90%; text-align: center;
+        }
+        .auth-card h1 { color: #f26b5e; margin-bottom: 25px; }
+        .auth-card input {
+            width: 100%; padding: 12px; margin: 8px 0 15px 0;
+            border: 1px solid #e0e0e0; border-radius: 10px;
+            box-sizing: border-box; font-size: 16px;
+        }
+        .auth-card button {
+            width: 100%; padding: 15px; background-color: #82c99f;
+            color: white; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: bold; font-size: 1.1em;
+        }
+        .auth-card a { 
+            display: block; margin-top: 20px; color: #555; 
+            text-decoration: none; font-size: 0.9em;
+        }
+        #message { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body class="auth-page">
+
+    <div class="auth-card">
+        <h1>🔓 Login</h1>
+        
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Username" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+        
+        <div id="message" style="color: red;"></div> <a href="signup.html">Create a new account</a>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

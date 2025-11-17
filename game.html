@@ -6,19 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HandBridge — Speed Challenge</title>
   <link rel="stylesheet" href="style.css" />
+
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  </head>
+
 </head>
 
 <body id="page-game">
-  <header class="hb-topbar">
-    <div class="hb-brand">HandBridge — <b>Speed Challenge</b></div>
-  </header>
+  <header class="container">
+        <div class="logo">
+            <img src="" ><span>HandBridge</span> 
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <a href="profile.html" class="btn btn-order">My Account</a>
+    </header>
 
+  <main class="container" style="padding-top: 10px;">
+  <h1 style="color: #f26b5e; margin-bottom: 30px;">
+        Speed Challenge
+  </h1>
   <main class="hb-grid">
     <!-- กล้อง + Canvas overlay -->
     <section id="cam-box" class="hb-cam-box">
       <!-- วิดีโอ: ซ่อนด้วย CSS เฉพาะหน้าเกม (เหลือจอเดียว) -->
       <video id="webcam-feed" playsinline muted autoplay></video>
-
+      
       <!-- กล่องล็อกอัตราส่วน + แคนวาส -->
       <div id="cam-wrap">
         <canvas id="overlay"></canvas>
@@ -94,7 +116,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
 
-  <script src="script.js"></script>
+  <script src="scripts.js"></script>
   <script> window.HB_MODE = "game"; </script>
 </body>
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | HandBridge</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .metric-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+        .metric-card h3 {
+            margin-top: 0;
+            color: #555;
+            font-size: 1.1em;
+        }
+        .metric-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #f26b5e; /* (สีชมพู) */
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cards */
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        
+        
+    </style>
+</head>
+<body id="page-dashboard">
+
+    <header class="container">
+        <div class="logo">
+            <img src="" ><span>HandBridge</span> 
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <a href="profile.html" class="btn btn-order">My Account</a>
+    </header>
+
+
+    <main class="container" style="padding-top: 10px;">
+    <h1 style="color: #f26b5e; margin-bottom: 30px;">
+        Dashboard (<span id="dashboard-username">...</span>)
+    </h1>
+
+    <!-- Metric Cards -->
+    <div class="metric-grid">
+        <div class="metric-card">
+            <h3>Total Attempts</h3>
+            <div id="total-attempts" class="value">0</div>
+        </div>
+        <div class="metric-card">
+            <h3>Correct</h3>
+            <div id="total-correct" class="value">0</div>
+        </div>
+        <div class="metric-card">
+            <h3>Overall Accuracy</h3>
+            <div id="overall-accuracy" class="value">0.0%</div>
+        </div>
+        <div class="metric-card">
+            <h3>Letters Mastered</h3>
+            <div id="letters-mastered" class="value">0</div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid">
+        <div class="chart-container">
+            <h2>Accuracy (Per-Unit)</h2>
+            <canvas id="accuracy-chart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h2>Correct vs Incorrect</h2>
+            <canvas id="correct-chart"></canvas>
+        </div>
+    </div>
+</main>
+
+
+    <script src="scripts.js"></script> 
+</body>
+</html>

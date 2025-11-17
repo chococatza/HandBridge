@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | HandBridge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-profile">
+    <header class="container">
+        <div class="logo">
+            <img src="" ><span>HandBridge</span> 
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <a href="profile.html" class="btn btn-order">My Account</a>
+    </header>
+
+
+    <main class="container" style="padding-top: 40px;">
+        <h1 style="color: #f26b5e; text-align: center; margin-bottom: 40px;">My Account Profile</h1>
+        
+        <div class="auth-card" style="margin: 0 auto;">
+            <div style="text-align: left;">
+                <h2>User Details</h2>
+                <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+                <p><strong>User ID:</strong> <span id="profile-user-id">—</span></p>
+                <p><strong>Status:</strong> Logged In</p>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Security & Settings</h3>
+            <button class="btn btn-order" onclick="location.href='dashboard.html'">Go to Dashboard</button>
+            <button id="logout-btn" class="btn btn-submit" style="background-color: #ef4444; margin-top: 10px;">Log Out</button>
+        </div>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

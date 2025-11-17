@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to HandBridge</title>
     <link rel="stylesheet" href="style.css">
+
+    <head>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    </head>
+    
 </head>
 <body id="page-home">
 
@@ -17,9 +24,10 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="lessons.html">Lessons</a></li>
                 <li><a href="game.html">Game</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
             </ul>
         </nav>
-        <button class="btn btn-order">My Account</button>
+        <a href="profile.html" class="btn btn-order">My Account</a>
     </header>
 
     <main class="container">
@@ -30,7 +38,7 @@
                 Choose your path below to get started.</p>
             </div>
             <div class="hero-image-placeholder">
-                 <img src="your-main-illustration.png" alt="Learn Sign Language">
+                 <img src="images/your-main-illustration.png" alt="Learn Sign Language">
             </div>
         </section>
     </main>
@@ -46,6 +54,7 @@
             <span class="choice-desc">Test your speed under pressure</span>
         </a>
     </footer>
+    <script src="scripts.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Practice Lesson</title>
   <link rel="stylesheet" href="style.css"/>
+
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    </head>
+
 </head>
 <body id="page-practice">
   <header class="container">
@@ -46,6 +53,56 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-  <script src="script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
+
+<script>
+// ดึงตัวอักษรปัจจุบัน
+function getCurrentLetter() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("letter") || "A";
+}
+
+const currentLetter = getCurrentLetter();
+document.getElementById("current-letter").textContent = currentLetter;
+
+// บันทึก lesson เสร็จ
+function completeLetter(letter) {
+    let completedLetters = JSON.parse(localStorage.getItem("completedLetters")) || [];
+    if (!completedLetters.includes(letter)) {
+        completedLetters.push(letter);
+        localStorage.setItem("completedLetters", JSON.stringify(completedLetters));
+
+        if ('BroadcastChannel' in window) {
+            const channel = new BroadcastChannel('lesson_channel');
+            channel.postMessage({completed: letter});
+        }
+    }
+}
+
+// ฟังก์ชันเรียกเมื่อกด Next หรือเล่นเสร็จ
+function onLessonComplete() {
+    completeLetter(currentLetter);
+    
+    // หา letter ถัดไป A-Z
+    const nextLetter = String.fromCharCode(currentLetter.charCodeAt(0) + 1);
+    if (nextLetter <= "Z") {
+        window.location.href = `practice.html?letter=${nextLetter}`;
+    } else {
+        alert("You have completed all letters! 🎉");
+        window.location.href = "lessons.html";
+    }
+}
+
+// ปุ่ม Next
+document.getElementById("next-btn").addEventListener("click", onLessonComplete);
+
+// ปุ่ม Previous
+document.getElementById("prev-btn").addEventListener("click", () => {
+    const prevLetter = String.fromCharCode(currentLetter.charCodeAt(0) - 1);
+    if (prevLetter >= "A") {
+        window.location.href = `practice.html?letter=${prevLetter}`;
+    }
+});
+</script>
